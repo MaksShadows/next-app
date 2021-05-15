@@ -1,11 +1,12 @@
-
 .calendar {
-  padding-top:20px;
+  padding-top: 20px;
+
   &__title {
     width: 163px;
     font-size: 14px;
     text-align: center;
-    color: #dfdfdf;;
+    color: #dfdfdf;
+    ;
     text-transform: uppercase;
   }
 
@@ -43,6 +44,7 @@
     left: 4px;
   }
 }
+
 .iconButton__left {
   margin: 0;
   padding: 10px;
@@ -58,6 +60,7 @@
   justify-content: center;
   transition: background-color 250ms linear;
 }
+
 .iconButton__right {
   margin: 0;
   padding: 10px;
@@ -73,10 +76,12 @@
   justify-content: center;
   transition: background-color 250ms linear;
 }
+
 .iconButton__left:focus,
 .iconButton__right:focus {
   outline: none;
 }
+
 .week {
   display: flex;
   margin: auto;
@@ -96,6 +101,7 @@
     padding-bottom: 20px;
   }
 }
+
 .table {
   margin: auto;
   border-spacing: 15px 12px;
@@ -118,19 +124,20 @@
   color: #3d3d3d;
 }
 
-.inprevmonthday {
+.firstline {
   background-color: transparent;
   text-align: center;
-  color:  #dfdfdf;
+  color: #dfdfdf;
   opacity: 0.24;
 }
 
-.innextmonthday {
+.lasttline {
   background-color: transparent;
   text-align: center;
-  color:  #dfdfdf;
+  color: #dfdfdf;
   opacity: 0.24;
 }
+
 @media screen and (min-width: 768px) {
   .calendar {
     display: flex;
@@ -141,6 +148,7 @@
     }
   }
 }
+
 @media screen and (min-width: 1024px) {
   .calendar {
     display: flex;
@@ -172,6 +180,7 @@
       left: 0;
     }
   }
+
   .day {
     width: 52px;
     height: 50px;
@@ -181,6 +190,7 @@
     width: 52px;
     height: 50px;
   }
+
   .week {
     font-size: 20px;
     margin-left: 0;
@@ -198,6 +208,7 @@
     &__container {
       width: 467px;
     }
+
     &__box {
       width: 467px;
       padding-left: 18px;

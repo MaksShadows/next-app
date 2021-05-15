@@ -6,13 +6,43 @@ import styles from "./calendar.module.scss";
 
 export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(moment());
+  const [calendar, setCalendar] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false);
+  const [dayOfWeek, setDayOfWeek] = useState("");
+  const [month, setMonth] = useState("");
+
+  useEffect(() => {
+    setCalendar(createCalendar(selectedDate));
+  }, []);
 
 
+  function createCalendar(moment) {
+    const startDay = moment.startOf("month").startOf("week");
+    const endDay = moment.endOf("month").endOf("week");
+    const calendar = [];
+    calendar.push(
+      Array(7)
+        .fill(0)
+        .map(() => startDay.add(1, "day").clone())
+        .map(() => endDay.add(1, "day").clone())
+    );
+    return calendar;
+  }
+
+  const dateClick = (date) => {
+
+    let day = date.format("Do, dddd");
+    let month = date.format("MMMM");
+
+    setDayOfWeek(`${day}`);
+    setMonth(month);
+    setShowPopUp(true);
+  };
 
   const togglePopUp = () => {
     setShowPopUp();
   };
+
 
   function currMonthName() {
     return selectedDate.format("MMMM");
@@ -27,6 +57,14 @@ export default function Calendar() {
     return selectedDate.clone().add(1, "month");
   }
 
+  function isSelected(day) {
+    return selectedDate.isSame(day, "day");
+  }
+
+  function dayStyles(day) {
+    if (isSelected(day)) return styles.today;
+    return styles.day;
+  }
   return (
     <section className={styles.calendar}>
       <Banner />
@@ -50,13 +88,25 @@ export default function Calendar() {
           <div className={styles.calendar__line}></div>
           <table className={styles.table}>
             <tbody>
-
+              {calendar.map((week, wi) => (
+                <tr key={wi} className={styles.calendar__row}>
+                  {week.map((day, di) => (
+                    <td
+                      key={di}
+                      className={`${dayStyles(day)} `}
+                      onClick={() => dateClick(day)}
+                    >
+                      <div>{day.format("D").toString()}</div>
+                    </td>
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </table>
           <div className={styles.calendar__line}></div>
           <ul className={styles.week}>
-            {["S", "M", "T", "W", "T", "F", "S"].map((weekDays) => (
-              <li className={styles.week__day}>{weekDays}</li>
+            {["S", "M", "T", "W", "T", "F", "S"].map((d) => (
+              <li className={styles.week__day}>{d}</li>
             ))}
           </ul>
           <div className={styles.calendar__line}></div>

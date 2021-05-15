@@ -19,9 +19,9 @@ const MainLayout = ({ children, title = "Next App" }) => {
                 <a className={styles.header__link}>Home</a>
               </Link>
             </li>
-            <li>
+            <li >
               <Link href="/about">
-                <a className={styles.header__link}>About us</a>
+                <a  className={styles.header__link}>About us</a>
               </Link>
             </li>
           </ul>
