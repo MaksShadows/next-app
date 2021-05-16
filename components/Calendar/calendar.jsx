@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import moment from "moment";
 import Form from "../Form/form";
@@ -5,6 +6,8 @@ import Banner from "../Banner/banner";
 import styles from "./calendar.module.scss";
 
 export default function Calendar() {
+
+
   const [selectedDate, setSelectedDate] = useState(moment());
   const [calendar, setCalendar] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false);
@@ -15,16 +18,15 @@ export default function Calendar() {
     setCalendar(createCalendar(selectedDate));
   }, []);
 
-
   function createCalendar(moment) {
+
     const startDay = moment.startOf("month").startOf("week");
     const endDay = moment.endOf("month").endOf("week");
     const calendar = [];
     calendar.push(
       Array(7)
         .fill(0)
-        .map(() => startDay.add(1, "day").clone())
-        .map(() => endDay.add(1, "day").clone())
+        .map(() =>  startDay.add(1, "day"), endDay.add(1, "day"))
     );
     return calendar;
   }
@@ -57,14 +59,6 @@ export default function Calendar() {
     return selectedDate.clone().add(1, "month");
   }
 
-  function isSelected(day) {
-    return selectedDate.isSame(day, "day");
-  }
-
-  function dayStyles(day) {
-    if (isSelected(day)) return styles.today;
-    return styles.day;
-  }
   return (
     <section className={styles.calendar}>
       <Banner />
@@ -88,12 +82,12 @@ export default function Calendar() {
           <div className={styles.calendar__line}></div>
           <table className={styles.table}>
             <tbody>
-              {calendar.map((week, wi) => (
-                <tr key={wi} className={styles.calendar__row}>
-                  {week.map((day, di) => (
+              {calendar.map((week, index) => (
+                <tr key={index} className={styles.calendar__row}>
+                  {week.map((day, index) => (
                     <td
-                      key={di}
-                      className={`${dayStyles(day)} `}
+                      key={index}
+                      className={styles.day}
                       onClick={() => dateClick(day)}
                     >
                       <div>{day.format("D").toString()}</div>

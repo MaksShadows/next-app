@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Может проблема с моим ноутбуком и ОС Windows 7, не смог использовать yarn, пакет менеджер не коректно работал у меня.
+## Поэтому использовал npm. С Next js  работал  впервые)
+## Календарть не сделан полностью, не хватет полного понимание и не хватка опыта. Клик по дате рабоатет и появляется поп окно с формой, но как календарть не доделан не совсем коректно.
+
 ## Getting Started
 
 First, run the development server:
